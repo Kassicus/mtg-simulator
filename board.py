@@ -13,8 +13,33 @@ class Battlefield():
         pass
 
 class Hand():
-    def __init__(self):
+    def __init__(self, surface):
         self.cards = []
+        self.draw_y = 650
+        self.draw_x = 10
+        self.x_step = 140
+
+        self.render_surface = surface
+
+        self.old_card_len = len(self.cards)
+
+        self.render_cards()
+
+    def render_cards(self):
+        for card in self.cards:
+            card.x = self.draw_x
+            card.y = self.draw_y
+            self.draw_x += self.x_step
+
+    def update_cards(self, events):
+        """if len(self.cards) != self.old_card_len:
+            self.render_cards()
+
+        self.old_card_len = len(self.cards)"""
+
+        for card in self.cards:
+            card.update(events)
+            card.draw(self.render_surface)
 
     def draw_card(self, deck):
         self.cards.append(deck.cards[0])

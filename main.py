@@ -22,14 +22,15 @@ class Game():
 
         self.test_a = card.Card("Triskaidekaphile", "cards/blue/Triskaidekaphile.png")
         self.test_b = card.Card("Shock", "cards/red/Shock.png")
+        self.test_c = card.Card("Ajani, Mentor of Heroes", "cards/green-white/Ajani_Mentor_of_Heroes.png")
 
-        self.deck = board.Deck("First Deck", [self.test_a, self.test_b])
+        self.deck = board.Deck("First Deck", [self.test_a, self.test_b, self.test_c])
 
-        self.hand = board.Hand()
-        #self.hand.print_hand()
+        self.hand = board.Hand(self.screen)
+
         self.hand.draw_card(self.deck)
         self.hand.draw_card(self.deck)
-        self.hand.print_hand()
+        self.hand.draw_card(self.deck)
 
     def start(self):
         while self.running:
@@ -44,12 +45,10 @@ class Game():
             self.update()
 
     def draw(self):
-        self.screen.fill(color.BLACK)
-
-        self.test_b.draw(self.screen)
+        self.screen.fill(color.BACKGROUND)
 
     def update(self):
-        self.test_b.update(self.events)
+        self.hand.update_cards(self.events)
 
         pygame.display.update()
         self.clock.tick(30)

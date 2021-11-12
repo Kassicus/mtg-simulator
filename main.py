@@ -1,11 +1,12 @@
 import pygame
 import color
+import card
 
 pygame.init()
 
 class Game():
     def __init__(self):
-        self.WIDTH = 1200
+        self.WIDTH = 1500
         self.HEIGHT = 900
         self.TITLE = "Magic: The Gathering Simulator"
 
@@ -17,6 +18,8 @@ class Game():
         self.clock = pygame.time.Clock()
 
         self.events = pygame.event.get()
+
+        self.test = card.Card("Triskaidekaphile", "cards/blue/Triskaidekaphile.png")
 
     def start(self):
         while self.running:
@@ -33,7 +36,11 @@ class Game():
     def draw(self):
         self.screen.fill(color.BLACK)
 
+        self.test.draw(self.screen)
+
     def update(self):
+        self.test.update(self.events)
+
         pygame.display.update()
         self.clock.tick(30)
 

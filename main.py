@@ -1,6 +1,7 @@
 import pygame
 import color
 import card
+import board
 
 pygame.init()
 
@@ -19,7 +20,16 @@ class Game():
 
         self.events = pygame.event.get()
 
-        self.test = card.Card("Triskaidekaphile", "cards/blue/Triskaidekaphile.png")
+        self.test_a = card.Card("Triskaidekaphile", "cards/blue/Triskaidekaphile.png")
+        self.test_b = card.Card("Shock", "cards/red/Shock.png")
+
+        self.deck = board.Deck("First Deck", [self.test_a, self.test_b])
+
+        self.hand = board.Hand()
+        #self.hand.print_hand()
+        self.hand.draw_card(self.deck)
+        self.hand.draw_card(self.deck)
+        self.hand.print_hand()
 
     def start(self):
         while self.running:
@@ -36,10 +46,10 @@ class Game():
     def draw(self):
         self.screen.fill(color.BLACK)
 
-        self.test.draw(self.screen)
+        self.test_b.draw(self.screen)
 
     def update(self):
-        self.test.update(self.events)
+        self.test_b.update(self.events)
 
         pygame.display.update()
         self.clock.tick(30)

@@ -36,3 +36,6 @@ class Card():
                 self.spotlight = False
         else:
             self.spotlight = False
+
+    def print_name(self):
+        print(self.name)
